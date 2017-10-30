@@ -25,9 +25,11 @@ GameObject:
   - component: {fileID: 114045227437324564}
   - component: {fileID: 114655782143176074}
   - component: {fileID: 114038546583026420}
+  - component: {fileID: 114800125636727276}
+  - component: {fileID: 114444537133515906}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: SceneObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,6 +126,18 @@ MonoBehaviour:
   sceneObjInfo: {fileID: 0}
   creatingObject: 0
   objectNumber: 3
+--- !u!114 &114444537133515906
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1563835795498174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b5b32382ad0604596396e20df3d131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  click: 0
 --- !u!114 &114655782143176074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,3 +155,14 @@ MonoBehaviour:
     type2: 
     lastSavedPosition: {x: 0, y: 0, z: 0}
     lastSavedRotation: {x: 0, y: 0, z: 0}
+--- !u!114 &114800125636727276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1563835795498174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07d8d5538409d11498a3f5bc577434ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

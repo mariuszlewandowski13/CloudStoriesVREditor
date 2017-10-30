@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaycastObjectSpawner : MonoBehaviour {
+public class RaycastObjectSpawner : RaycastBase {
 
     private GameObject enviroment;
 
-    private LineRenderer lineRenderer;
+   
 
     private ControllerScript controller;
 
@@ -14,9 +14,9 @@ public class RaycastObjectSpawner : MonoBehaviour {
 
     private bool spawning;
 
-    private bool active;
+   
 
-    private Vector3 hitPoint;
+    
 
     private RaycastHit hit;
 
@@ -24,7 +24,7 @@ public class RaycastObjectSpawner : MonoBehaviour {
     {
         controller = GetComponent<ControllerScript>();
         //trackedObj = transform.parent.GetComponent<SteamVR_TrackedObject>();
-        lineRenderer = GetComponent<LineRenderer>();
+        
         enviroment = GameObject.Find("SCENE");
     }
 
@@ -51,7 +51,6 @@ public class RaycastObjectSpawner : MonoBehaviour {
             if (hit.transform != null)
             {
                 hitPoint = hit.point;
-
             }
             else
             {
@@ -78,22 +77,6 @@ public class RaycastObjectSpawner : MonoBehaviour {
         spawnedObject.AddComponent<SelectingObjectsScript>();
     }
 
-    protected void CursorOn()
-    {
-        active = true;
-        Vector3[] points = new Vector3[] { transform.position, hitPoint };
-        lineRenderer.positionCount = 2;
-        lineRenderer.SetPositions(points);
-    }
-
-    protected void CursorOff()
-    {
-        if (active)
-        {
-            active = false;
-            lineRenderer.positionCount = 0;
-        }
-
-    }
+   
 
 }

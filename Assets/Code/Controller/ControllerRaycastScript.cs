@@ -2,23 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControllerRaycastScript : MonoBehaviour {
+public class ControllerRaycastScript : RaycastBase {
 
-    //public Valve.VR.EVRButtonId triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
-
-    //public SteamVR_Controller.Device controller { get { return SteamVR_Controller.Input((int)trackedObj.index); } }
-    //private SteamVR_TrackedObject trackedObj;
-
-    private bool active;
     private bool isPointing;
 
-    private Vector3 hitPoint;
+
 
     private RaycastHit hit;
 
     private Transform actualPointing;
-
-    private LineRenderer lineRenderer;
 
     private ControllerScript controller;
 
@@ -26,8 +18,6 @@ public class ControllerRaycastScript : MonoBehaviour {
 
     void Start () {
         controller = GetComponent<ControllerScript>();
-        //trackedObj = transform.parent.GetComponent<SteamVR_TrackedObject>();
-        lineRenderer = GetComponent<LineRenderer>();
     }
 
 	void Update () {
@@ -36,13 +26,13 @@ public class ControllerRaycastScript : MonoBehaviour {
             Ray ray = new Ray(transform.position, transform.forward);
 
             Physics.Raycast(ray, out hit, 5);
-            if (hit.transform != null && hit.transform.GetComponent<IClickable>() != null && hit.transform.tag == "Btn")
+            if (hit.transform != null && hit.transform.GetComponent<IClickable>() != null && (hit.transform.tag == "Btn" || hit.transform.tag == "SceneObject"))
             {
                 isPointing = true;
                 hitPoint = hit.point;
                 CursorOn();
 
-                if (hit.transform != actualPointing)
+                if ( hit.transform != actualPointing)
                 {
                     if (actualPointing != null && actualPointing.GetComponent<IRaycastPointable>() != null)
                     {
@@ -81,21 +71,4 @@ public class ControllerRaycastScript : MonoBehaviour {
 
     }
 
-    protected void CursorOn()
-    {
-        active = true;
-        Vector3[] points = new Vector3[] { transform.position, hitPoint };
-        lineRenderer.positionCount = 2;
-        lineRenderer.SetPositions(points);
-    }
-
-    protected void CursorOff()
-    {
-        if (active)
-        {
-            active = false;
-            lineRenderer.positionCount = 0;
-        }
-
-    }
 }

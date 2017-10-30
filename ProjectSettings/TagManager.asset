@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Btn
   - Tip
+  - SceneObject
   layers:
   - Default
   - TransparentFX

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObjectTypeButton : MonoBehaviour, IClickable {
 
     public GameObject objectToActivate;
-    private static ObjectTypeButton actualActiveObject;
+    public static ObjectTypeButton actualActiveObject;
 
     public bool click;
 
@@ -17,7 +17,6 @@ public class ObjectTypeButton : MonoBehaviour, IClickable {
             {
                 actualActiveObject.objectToActivate.SetActive(false);
             }
-
             actualActiveObject = this;
             objectToActivate.SetActive(true);
         }
