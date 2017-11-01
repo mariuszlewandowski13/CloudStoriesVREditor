@@ -67,6 +67,9 @@ public class ControllerRaycastScript : RaycastBase {
 
             } else if (hit.transform != null && hit.transform.tag == "ScrollingPanel")
             {
+                isPointing = true;
+                hitPoint = hit.point;
+                CursorOn();
                 if (pressedDown)
                 {
                     if (ControlObjects.SetScrollingObject(gameObject))
