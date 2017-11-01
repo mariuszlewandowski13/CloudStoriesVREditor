@@ -91,7 +91,7 @@ public class DatabaseController : MonoBehaviour {
     }
 
 
-    public void SaveObject(string objectName, int number, Vector3 pos, Vector3 rot, ResultMethod2 meth)
+    public void SaveObject(string objectName, string number, Vector3 pos, Vector3 rot, ResultMethod2 meth, byte [] bytes = null, string extension = "")
     {
         Debug.Log("Saving");
         WWWForm form = new WWWForm();
@@ -104,6 +104,11 @@ public class DatabaseController : MonoBehaviour {
         form.AddField("rotX", rot.x.ToString());
         form.AddField("rotY", rot.y.ToString());
         form.AddField("rotZ", rot.z.ToString());
+
+        if (bytes != null)
+        {
+            form.AddBinaryData("file", bytes, number, "image/" + extension);
+        }
 
         form.AddField("projectID", ApplicationStaticData.actualProject.id);
 

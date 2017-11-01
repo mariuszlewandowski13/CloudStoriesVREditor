@@ -22,6 +22,11 @@ public static class ApplicationStaticData
 
     public static ProjectObject actualProject;
 
+    public static List<ImagesInfo> shapesInfos;
+
+
+    public static string mediaPath = "C:/media/";
+    public static string shapesPath = mediaPath + "Shapes/";
 
     #endregion
 

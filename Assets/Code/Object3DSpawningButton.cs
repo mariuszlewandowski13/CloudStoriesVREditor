@@ -7,11 +7,14 @@ public class Object3DSpawningButton : MonoBehaviour, IClickable {
 
     public GameObject objectToSpawn;
 
+    public string type;
+    public string type2;
+
     public bool click;
 
-    public void Clicked(Vector3 pos, GameObject clickingObject)
+    public virtual void Clicked(Vector3 pos, GameObject clickingObject)
     {
-        clickingObject.GetComponent<RaycastObjectSpawner>().StartSpawning(objectToSpawn, pos);
+        clickingObject.GetComponent<RaycastObjectSpawner>().StartSpawning(objectToSpawn, pos, type, type2);
 
     }
 
@@ -24,4 +27,5 @@ public class Object3DSpawningButton : MonoBehaviour, IClickable {
             Clicked(new Vector3(), gameObject);
         }
     }
+
 }

@@ -6,8 +6,6 @@ public class ControllerRaycastScript : RaycastBase {
 
     private bool isPointing;
 
-
-
     private RaycastHit hit;
 
     private Transform actualPointing;
@@ -16,8 +14,17 @@ public class ControllerRaycastScript : RaycastBase {
 
     public bool isActive = true;
 
+    public bool scrollingStarted;
+
+    public float triggerDownClickedTime;
+    public Vector3 lastPosition;
+
+
+    public float clickDuration = 0.3f;
+
     void Start () {
         controller = GetComponent<ControllerScript>();
+        lastPosition = transform.position;
     }
 
 	void Update () {
@@ -26,13 +33,17 @@ public class ControllerRaycastScript : RaycastBase {
             Ray ray = new Ray(transform.position, transform.forward);
 
             Physics.Raycast(ray, out hit, 5);
-            if (hit.transform != null && hit.transform.GetComponent<IClickable>() != null && (hit.transform.tag == "Btn" || hit.transform.tag == "SceneObject"))
+
+            bool pressedDown = controller.triggerDown;
+            bool pressedUp = controller.triggerUp;
+
+            if (!scrollingStarted && hit.transform != null && hit.transform.GetComponent<IClickable>() != null && (hit.transform.tag == "Btn" || hit.transform.tag == "SceneObject"))
             {
                 isPointing = true;
                 hitPoint = hit.point;
                 CursorOn();
 
-                if ( hit.transform != actualPointing)
+                if (hit.transform != actualPointing)
                 {
                     if (actualPointing != null && actualPointing.GetComponent<IRaycastPointable>() != null)
                     {
@@ -45,11 +56,23 @@ public class ControllerRaycastScript : RaycastBase {
                         actualPointing.GetComponent<IRaycastPointable>().Highlight(true);
                     }
                 }
-                bool pressedDown = controller.triggerDown;
+
 
                 if (pressedDown)
                 {
                     actualPointing.GetComponent<IClickable>().Clicked(hitPoint, gameObject);
+
+                }
+
+
+            } else if (hit.transform != null && hit.transform.tag == "ScrollingPanel")
+            {
+                if (pressedDown)
+                {
+                    if (ControlObjects.SetScrollingObject(gameObject))
+                    {
+                        scrollingStarted = true;
+                    }
                 }
             }
             else if (isPointing)
@@ -67,6 +90,21 @@ public class ControllerRaycastScript : RaycastBase {
                     actualPointing = null;
                 }
             }
+
+            if (scrollingStarted)
+            {
+                if (pressedUp)
+                {
+                    ControlObjects.UnsetScrollingObject(gameObject);
+                    scrollingStarted = false;
+                }
+                else if (ControlObjects.scroll != null)
+                {
+                    ControlObjects.scroll.GetComponent<IScrollable>().GetControllerChange(lastPosition - transform.position);
+                }
+            }
+
+            lastPosition = transform.position;
         }
 
     }

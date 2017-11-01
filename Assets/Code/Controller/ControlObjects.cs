@@ -11,9 +11,41 @@ using UnityEngine.XR.WSA.Input;
 public class ControlObjects : MonoBehaviour
 {
 
-   
+    public static GameObject scroll;
+    public static object scrolLock = new object();
+    public static GameObject scrollingGameObject;
+
 
     public bool click;
+
+    public static bool SetScrollingObject(GameObject newScrolling)
+    {
+        bool result = false;
+
+        lock (scrolLock)
+        {
+            if (scrollingGameObject == null && scroll != null)
+            {
+                scrollingGameObject = newScrolling;
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
+    public static GameObject UnsetScrollingObject(GameObject newScrolling)
+    {
+        lock (scrolLock)
+        {
+            if (scrollingGameObject == newScrolling)
+            {
+                scrollingGameObject = null;
+            }
+        }
+
+        return scrollingGameObject;
+    }
 
     private class ControllerState
     {

@@ -11,15 +11,20 @@ public class ObjectTypeButton : MonoBehaviour, IClickable {
 
     public void Clicked(Vector3 pos, GameObject clickingObject)
     {
-        if (objectToActivate != null)
+        if (ControlObjects.scrollingGameObject == null)
         {
-            if (actualActiveObject != null)
+            if (objectToActivate != null)
             {
-                actualActiveObject.objectToActivate.SetActive(false);
+                if (actualActiveObject != null)
+                {
+                    actualActiveObject.objectToActivate.SetActive(false);
+                }
+                actualActiveObject = this;
+                objectToActivate.SetActive(true);
             }
-            actualActiveObject = this;
-            objectToActivate.SetActive(true);
+            ControlObjects.scroll = objectToActivate;
         }
+       
         
     }
 

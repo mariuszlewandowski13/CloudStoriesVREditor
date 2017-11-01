@@ -124,7 +124,8 @@ MonoBehaviour:
   database: {fileID: 0}
   sceneObjInfo: {fileID: 0}
   creatingObject: 0
-  objectNumber: 1
+  objectType2: 1
+  objectType: 3DObject
 --- !u!114 &114793782304729554
 MonoBehaviour:
   m_ObjectHideFlags: 1
