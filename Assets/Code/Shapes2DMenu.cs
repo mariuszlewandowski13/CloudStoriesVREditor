@@ -86,6 +86,9 @@ public class Shapes2DMenu : MonoBehaviour {
                     
                 }
 
+                float ratio = (float)info.height / (float)info.width;
+
+                icon.GetComponent<Object2DSpawningButton>().SetObjectTypes(info.path, info.name, ratio);
                 icon.transform.parent = transform;
 
                 icon.transform.localPosition = new Vector3(actualX, actualY, actualZ);
@@ -99,7 +102,7 @@ public class Shapes2DMenu : MonoBehaviour {
                     actualZ += zAdding;
                 }
 
-                icon.GetComponent<Object2DSpawningButton>().SetObjectTypes(info.path, info.name);
+                
             }
         }
     }

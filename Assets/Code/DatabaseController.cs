@@ -70,7 +70,7 @@ public class DatabaseController : MonoBehaviour {
         StartCoroutine(request(w, method));
     }
 
-    public void SaveLayoutObject(string objectName, int number, Vector3 pos, Vector3 rot, int layID)
+    public void SaveLayoutObject(string objectName, int number, Vector3 pos, Vector3 rot, Vector3 size, int layID)
     {
         WWWForm form = new WWWForm();
         form.AddField("objectName", objectName);
@@ -83,6 +83,10 @@ public class DatabaseController : MonoBehaviour {
         form.AddField("rotY", rot.y.ToString());
         form.AddField("rotZ", rot.z.ToString());
 
+        form.AddField("sizeX", size.x.ToString());
+        form.AddField("sizeY", size.y.ToString());
+        form.AddField("sizeZ", size.z.ToString());
+
         form.AddField("layoutID", layID);
 
 
@@ -91,7 +95,7 @@ public class DatabaseController : MonoBehaviour {
     }
 
 
-    public void SaveObject(string objectName, string number, Vector3 pos, Vector3 rot, ResultMethod2 meth, byte [] bytes = null, string extension = "")
+    public void SaveObject(string objectName, string number, Vector3 pos, Vector3 rot, Vector3 size, ResultMethod2 meth, byte [] bytes = null, string extension = "")
     {
         Debug.Log("Saving");
         WWWForm form = new WWWForm();
@@ -104,6 +108,10 @@ public class DatabaseController : MonoBehaviour {
         form.AddField("rotX", rot.x.ToString());
         form.AddField("rotY", rot.y.ToString());
         form.AddField("rotZ", rot.z.ToString());
+
+        form.AddField("sizeX", size.x.ToString());
+        form.AddField("sizeY", size.y.ToString());
+        form.AddField("sizeZ", size.z.ToString());
 
         if (bytes != null)
         {

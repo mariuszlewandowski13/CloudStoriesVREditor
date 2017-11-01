@@ -28,11 +28,11 @@ public class RaycastObjectSpawner : RaycastBase {
         enviroment = GameObject.Find("SCENE");
     }
 
-    public void StartSpawning(GameObject objectToSpawn, Vector3 pos, string type, string type2, string type3 = "", bool loadTexture = false, string ext = "")
+    public void StartSpawning(GameObject objectToSpawn, Vector3 pos, Vector3 scale, Vector3 rotation,  string type, string type2, string type3 = "", bool loadTexture = false, string ext = "")
     {
 
         spawning = true;
-        spawnedObject = enviroment.GetComponent<EnviromentMAnager>().SpawnObject(objectToSpawn, pos, new Quaternion());
+        spawnedObject = enviroment.GetComponent<EnviromentMAnager>().SpawnObject(objectToSpawn, pos,scale, Quaternion.Euler(rotation));
         spawnedObject.GetComponent<ObjectDatabaseUpdater>().SetTypesAndCreate(type, type2, type3, loadTexture, ext);
 
         GetComponent<ControllerRaycastScript>().isActive = false;

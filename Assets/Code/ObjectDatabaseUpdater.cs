@@ -62,7 +62,7 @@ public class ObjectDatabaseUpdater : MonoBehaviour {
         {
             creatingObject = true;
             database = GameObject.Find("LoadScene").GetComponent<DatabaseController>();
-            database.SaveObject(objectType, objectType2, transform.position, transform.rotation.eulerAngles, SetSceneObject, textureBytes , extension);
+            database.SaveObject(objectType, objectType2, transform.position, transform.rotation.eulerAngles, transform.lossyScale, SetSceneObject, textureBytes , extension);
         }
     }
 

@@ -14,9 +14,10 @@ public class EnviromentMAnager : MonoBehaviour {
         sceneObjects = transform.Find("SceneObjects").gameObject;
     }
 
-    public GameObject SpawnObject(GameObject objToSpawn, Vector3 position, Quaternion rotation = new Quaternion())
+    public GameObject SpawnObject(GameObject objToSpawn, Vector3 position,Vector3 scale,  Quaternion rotation = new Quaternion())
     {
         GameObject newObject = Instantiate(objToSpawn, position, rotation);
+        newObject.transform.localScale = scale * 2.0f;
         newObject.transform.parent = sceneObjects.transform;
         return newObject;
     }
@@ -55,7 +56,7 @@ public class EnviromentMAnager : MonoBehaviour {
         foreach (Transform child in sceneObjects.transform)
         {
             SceneObject sceneObj = child.GetComponent<SceneObjectInfo>().obj;
-            GameObject.Find("LoadScene").GetComponent<DatabaseController>().SaveLayoutObject(sceneObj.type, Int32.Parse(sceneObj.type2), child.position, child.rotation.eulerAngles, layoutID);
+            GameObject.Find("LoadScene").GetComponent<DatabaseController>().SaveLayoutObject(sceneObj.type, Int32.Parse(sceneObj.type2), child.position, child.rotation.eulerAngles, child.transform.lossyScale, layoutID);
         }
     }
 

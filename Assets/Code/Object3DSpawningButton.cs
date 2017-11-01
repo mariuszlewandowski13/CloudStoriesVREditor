@@ -14,7 +14,7 @@ public class Object3DSpawningButton : MonoBehaviour, IClickable {
 
     public virtual void Clicked(Vector3 pos, GameObject clickingObject)
     {
-        clickingObject.GetComponent<RaycastObjectSpawner>().StartSpawning(objectToSpawn, pos, type, type2);
+        clickingObject.GetComponent<RaycastObjectSpawner>().StartSpawning(objectToSpawn, pos, transform.lossyScale, transform.rotation.eulerAngles, type, type2);
 
     }
 

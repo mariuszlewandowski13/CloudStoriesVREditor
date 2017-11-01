@@ -4,23 +4,17 @@ using UnityEngine;
 
 public class RaycastBase : MonoBehaviour {
 
-    private LineRenderer lineRenderer;
 
     private bool active;
 
     protected Vector3 hitPoint;
 
-    private void Start()
-    {
-        lineRenderer = GetComponent<LineRenderer>();
-    }
-
     protected void CursorOn()
     {
         active = true;
         Vector3[] points = new Vector3[] { transform.position, hitPoint };
-        lineRenderer.positionCount = 2;
-        lineRenderer.SetPositions(points);
+        GetComponent<LineRenderer>().positionCount = 2;
+        GetComponent<LineRenderer>().SetPositions(points);
     }
 
     protected void CursorOff()
@@ -28,7 +22,7 @@ public class RaycastBase : MonoBehaviour {
         if (active)
         {
             active = false;
-            lineRenderer.positionCount = 0;
+            GetComponent<LineRenderer>().positionCount = 0;
         }
 
     }
