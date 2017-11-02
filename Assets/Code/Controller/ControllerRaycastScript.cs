@@ -22,6 +22,8 @@ public class ControllerRaycastScript : RaycastBase {
 
     public float clickDuration = 0.3f;
 
+    public bool click;
+
     void Start () {
         controller = GetComponent<ControllerScript>();
         lastPosition = transform.position;
@@ -58,10 +60,10 @@ public class ControllerRaycastScript : RaycastBase {
                 }
 
 
-                if (pressedDown)
+                if (pressedDown || click)
                 {
                     actualPointing.GetComponent<IClickable>().Clicked(hitPoint, gameObject);
-
+                    click = false;
                 }
 
 

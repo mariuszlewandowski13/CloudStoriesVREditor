@@ -33,6 +33,8 @@ public class RaycastObjectSpawner : RaycastBase {
 
         spawning = true;
         spawnedObject = enviroment.GetComponent<EnviromentMAnager>().SpawnObject(objectToSpawn, pos,scale, Quaternion.Euler(rotation));
+        spawnedObject.transform.LookAt(gameObject.transform);
+        spawnedObject.transform.Rotate(90.0f, 0.0f, 0.0f);
         spawnedObject.GetComponent<ObjectDatabaseUpdater>().SetTypesAndCreate(type, type2, type3, loadTexture, ext);
 
         GetComponent<ControllerRaycastScript>().isActive = false;
