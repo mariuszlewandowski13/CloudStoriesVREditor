@@ -42,6 +42,8 @@ GameObject:
   - component: {fileID: 114462969033815408}
   - component: {fileID: 114369153158853282}
   - component: {fileID: 65326527130532410}
+  - component: {fileID: 114771428613979828}
+  - component: {fileID: 114148755909658572}
   m_Layer: 0
   m_Name: Room
   m_TagString: Untagged
@@ -314,6 +316,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSelected: 0
   collision: 0
+--- !u!114 &114148755909658572
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1311005028212108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b5b32382ad0604596396e20df3d131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  click: 0
 --- !u!114 &114369153158853282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -353,3 +367,14 @@ MonoBehaviour:
   active: 0
   treshold: 0.05
   canMove: 0
+--- !u!114 &114771428613979828
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1311005028212108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07d8d5538409d11498a3f5bc577434ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
