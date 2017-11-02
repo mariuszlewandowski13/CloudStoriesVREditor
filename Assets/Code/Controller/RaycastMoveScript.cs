@@ -14,6 +14,8 @@ public class RaycastMoveScript : RaycastBase {
 
     private RaycastHit hit;
 
+    private float raycasterLength = 1.0f;
+
     void Start()
     {
         controller = GetComponent<ControllerScript>();
@@ -24,6 +26,8 @@ public class RaycastMoveScript : RaycastBase {
 
         moving = true;
         movingObject = objectToMove;
+
+        raycasterLength = Vector3.Distance(pos, transform.position);
 
         GetComponent<ControllerRaycastScript>().isActive = false;
     }
@@ -37,14 +41,14 @@ public class RaycastMoveScript : RaycastBase {
 
             Ray ray = new Ray(transform.position, transform.forward);
 
-            Physics.Raycast(ray, out hit, 3);
+            Physics.Raycast(ray, out hit, raycasterLength);
             if (hit.transform != null)
             {
                 hitPoint = hit.point;
             }
             else
             {
-                hitPoint = transform.forward * 3 + transform.position;
+                hitPoint = transform.forward * raycasterLength + transform.position;
             }
             CursorOn();
             movingObject.transform.position = hitPoint;
@@ -61,7 +65,7 @@ public class RaycastMoveScript : RaycastBase {
     {
         moving = false;
         GetComponent<ControllerRaycastScript>().isActive = true;
-        CursorOff()                                                                              ;
+        CursorOff();
     }
 
 }
