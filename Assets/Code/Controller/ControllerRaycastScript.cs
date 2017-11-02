@@ -109,6 +109,21 @@ public class ControllerRaycastScript : RaycastBase {
 
             lastPosition = transform.position;
         }
+        else  if (isPointing)
+        {
+            CursorOff();
+            isPointing = false;
+
+            if (actualPointing != null)
+            {
+                if (actualPointing.GetComponent<IRaycastPointable>() != null)
+                {
+                    actualPointing.GetComponent<IRaycastPointable>().Highlight(false);
+                }
+
+                actualPointing = null;
+            }
+        }
 
     }
 

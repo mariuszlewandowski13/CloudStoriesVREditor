@@ -129,6 +129,8 @@ public class ControllerScript : MonoBehaviour {
                             collidingGameObjects.Add(pickup);
                             pickup = collider.gameObject;
                             pickup.GetComponent<ObjectInteractionScript>().SetCollision(true, gameObject);
+
+
                         }
                     }
                     else
@@ -140,7 +142,9 @@ public class ControllerScript : MonoBehaviour {
                         }
                     }
 
-                }
+            GetComponent<ControllerRaycastScript>().isActive = false;
+
+        }
             
         
 
@@ -215,6 +219,7 @@ public class ControllerScript : MonoBehaviour {
                 {
                     pickup.GetComponent<ObjectInteractionScript>().SetCollision(false, gameObject);
                     pickup = null;
+                    GetComponent<ControllerRaycastScript>().isActive = true;
                 }
             }
         }
