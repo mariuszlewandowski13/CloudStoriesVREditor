@@ -8,6 +8,7 @@ public class RaycastMoveScript : RaycastBase {
     private ControllerScript controller;
 
     private GameObject movingObject;
+    private Transform movingObejctPreviousParent;
 
     private bool moving;
 
@@ -15,6 +16,8 @@ public class RaycastMoveScript : RaycastBase {
     private RaycastHit hit;
 
     private float raycasterLength = 1.0f;
+
+    private GameObject rotationCenter;
 
     void Start()
     {
@@ -29,6 +32,14 @@ public class RaycastMoveScript : RaycastBase {
 
         raycasterLength = Vector3.Distance(pos, transform.position);
 
+
+        rotationCenter = new GameObject();
+        rotationCenter.transform.position = objectToMove.transform.position;
+        rotationCenter.transform.LookAt(gameObject.transform);
+
+        movingObejctPreviousParent = movingObject.transform.parent;
+
+        movingObject.transform.parent = rotationCenter.transform;
         GetComponent<ControllerRaycastScript>().isActive = false;
     }
 
@@ -37,7 +48,7 @@ public class RaycastMoveScript : RaycastBase {
         if (moving)
         {
 
-            movingObject.transform.position = new Vector3(1000f, 1000f, 1000f);
+            rotationCenter.transform.position = new Vector3(1000f, 1000f, 1000f);
 
             Ray ray = new Ray(transform.position, transform.forward);
 
@@ -51,7 +62,8 @@ public class RaycastMoveScript : RaycastBase {
                 hitPoint = transform.forward * raycasterLength + transform.position;
             }
             CursorOn();
-            movingObject.transform.position = hitPoint;
+            rotationCenter.transform.position = hitPoint;
+            rotationCenter.transform.LookAt(gameObject.transform);
 
             if (controller.triggerUp)
             {
@@ -64,6 +76,13 @@ public class RaycastMoveScript : RaycastBase {
     public void StopMoving()
     {
         moving = false;
+        movingObject.transform.parent = movingObejctPreviousParent;
+
+        movingObject = null;
+        movingObejctPreviousParent = null;
+
+        Destroy(rotationCenter);
+
         GetComponent<ControllerRaycastScript>().isActive = true;
         CursorOff();
     }

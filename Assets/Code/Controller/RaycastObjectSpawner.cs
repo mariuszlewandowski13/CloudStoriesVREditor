@@ -64,6 +64,9 @@ public class RaycastObjectSpawner : RaycastBase {
             CursorOn();
             spawnedObject.transform.position = hitPoint;
 
+            spawnedObject.transform.LookAt(gameObject.transform);
+            spawnedObject.transform.Rotate(90.0f, 0.0f, 0.0f);
+
             if (controller.triggerUp)
             {
                 StopSpawning();
