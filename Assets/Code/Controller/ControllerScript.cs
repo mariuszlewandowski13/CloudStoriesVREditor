@@ -27,6 +27,23 @@ public class ControllerScript : MonoBehaviour {
 
     #endregion
 
+    public GameObject secondController
+    {
+        get {
+            GameObject result = null;
+
+            if (transform.parent.parent.name == "LeftController" && transform.parent.parent.parent.Find("RightController") != null)
+            {
+                result = transform.parent.parent.parent.Find("RightController").Find("Controller(Clone)").Find("ControlObject").gameObject;
+            }else if (transform.parent.parent.name == "RightController" && transform.parent.parent.parent.Find("LeftController") != null)
+            {
+                result = transform.parent.parent.parent.Find("LeftController").Find("Controller(Clone)").Find("ControlObject").gameObject;
+            }
+            return result;
+        }
+    }
+
+
     #region Private Properties
 
     //private Valve.VR.EVRButtonId gripButton = Valve.VR.EVRButtonId.k_EButton_Grip;
@@ -64,7 +81,7 @@ public class ControllerScript : MonoBehaviour {
         {
         triggerDown = (!previousStatePressed && actualStatePressed);
         triggerUp = (previousStatePressed && !actualStatePressed);
-            Debug.Log("TriggerDown :" + triggerDown.ToString() + " Pickup: " + pickup);
+          //  Debug.Log("TriggerDown :" + triggerDown.ToString() + " Pickup: " + pickup);
         
 
             if (triggerDown && TriggerDown != null)

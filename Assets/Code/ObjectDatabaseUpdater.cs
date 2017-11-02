@@ -32,7 +32,7 @@ public class ObjectDatabaseUpdater : MonoBehaviour {
 	void Update () {
         if (!creatingObject && sceneObjInfo.obj != null && database != null)
         {
-            if (transform.position.x != sceneObjInfo.obj.lastSavedPosition.x || transform.position.y != sceneObjInfo.obj.lastSavedPosition.y || transform.position.z != sceneObjInfo.obj.lastSavedPosition.z || transform.rotation.eulerAngles.x != sceneObjInfo.obj.lastSavedRotation.x || transform.rotation.eulerAngles.y != sceneObjInfo.obj.lastSavedRotation.y || transform.rotation.eulerAngles.z != sceneObjInfo.obj.lastSavedRotation.z)
+            if (transform.position.x != sceneObjInfo.obj.lastSavedPosition.x || transform.position.y != sceneObjInfo.obj.lastSavedPosition.y || transform.position.z != sceneObjInfo.obj.lastSavedPosition.z || transform.rotation.eulerAngles.x != sceneObjInfo.obj.lastSavedRotation.x || transform.rotation.eulerAngles.y != sceneObjInfo.obj.lastSavedRotation.y || transform.rotation.eulerAngles.z != sceneObjInfo.obj.lastSavedRotation.z || transform.lossyScale.x != sceneObjInfo.obj.lastSavedScale.x || transform.lossyScale.y != sceneObjInfo.obj.lastSavedScale.y || transform.lossyScale.z != sceneObjInfo.obj.lastSavedScale.z)
             {
                 UpdateObjectPosRot();
             }
@@ -51,8 +51,9 @@ public class ObjectDatabaseUpdater : MonoBehaviour {
         {
             sceneObjInfo.obj.lastSavedPosition = transform.position;
             sceneObjInfo.obj.lastSavedRotation = transform.rotation.eulerAngles;
+            sceneObjInfo.obj.lastSavedScale = transform.lossyScale;
 
-            database.UpdateObject(sceneObjInfo.obj.lastSavedPosition, sceneObjInfo.obj.lastSavedRotation, sceneObjInfo.obj.ID);
+            database.UpdateObject(sceneObjInfo.obj.lastSavedPosition, sceneObjInfo.obj.lastSavedRotation, sceneObjInfo.obj.lastSavedScale, sceneObjInfo.obj.ID);
         }
     }
 

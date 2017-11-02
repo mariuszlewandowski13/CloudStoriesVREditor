@@ -125,7 +125,7 @@ public class DatabaseController : MonoBehaviour {
         StartCoroutine(request(w, meth, pos, rot));
     }
 
-    public void UpdateObject( Vector3 pos, Vector3 rot, int ID)
+    public void UpdateObject( Vector3 pos, Vector3 rot, Vector3 size, int ID)
     {
         WWWForm form = new WWWForm();
         form.AddField("ID", ID);
@@ -137,6 +137,10 @@ public class DatabaseController : MonoBehaviour {
         form.AddField("rotX", rot.x.ToString());
         form.AddField("rotY", rot.y.ToString());
         form.AddField("rotZ", rot.z.ToString());
+
+        form.AddField("sizeX", size.x.ToString());
+        form.AddField("sizeY", size.y.ToString());
+        form.AddField("sizeZ", size.z.ToString());
 
         form.AddField("projectID", ApplicationStaticData.actualProject.id);
 

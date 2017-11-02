@@ -10,6 +10,7 @@ public class SceneObject   {
     public string type2;
     public Vector3 lastSavedPosition;
     public Vector3 lastSavedRotation;
+    public Vector3 lastSavedScale;
 
     public SceneObject(int id, string typ, string typ2, Vector3 pos, Vector3 rot)
     {
